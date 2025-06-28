@@ -1,0 +1,51 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Multiply</h1>
+
+    <div class="task-description">
+        <p>Напишите функцию, которая принимает два числа и возвращает их произведение. Функция должна:</p>
+        <ul>
+            <li>Корректно работать с целыми числами и числами с плавающей точкой</li>
+            <li>Обрабатывать умножение на ноль</li>
+            <li>Учитывать знаки чисел (положительные/отрицательные)</li>
+            <li>Возвращать 0 при умножении любого числа на ноль</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/50654ddff44f800200000004" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def multiply(a, b):
+    """Returns the product of two numbers."""
+    return a * b</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Basic multiplication
+multiply(2, 3)    # Expected: 6
+
+# With zero
+multiply(5, 0)    # Expected: 0
+
+# Negative numbers
+multiply(-3, 4)   # Expected: -12
+
+# Floating point
+multiply(2.5, 4)  # Expected: 10.0
+
+# Commutative property
+multiply(4, 2.5)  # Expected: 10.0</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='even_or_odd') }}" class="nav-link">Next: Even or Odd →</a>
+    </div>
+{% endblock %}

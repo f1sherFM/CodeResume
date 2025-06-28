@@ -1,0 +1,50 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Even or Odd</h1>
+
+    <div class="task-description">
+        <p>Создайте функцию, которая определяет чётность целого числа. Требования:</p>
+        <ul>
+            <li>Возвращает строку "Even" для чётных чисел</li>
+            <li>Возвращает строку "Odd" для нечётных чисел</li>
+            <li>Ноль должен считаться чётным числом</li>
+            <li>Должна работать с отрицательными числами</li>
+            <li>Принимает только целые числа</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/53da3dbb4a5168369a0000fe" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def even_or_odd(number):
+    """Determines if a number is even or odd."""
+    return 'Even' if number % 2 == 0 else 'Odd'</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Even numbers
+even_or_odd(4)     # Expected: "Even"
+even_or_odd(0)     # Expected: "Even"
+even_or_odd(-2)    # Expected: "Even"
+
+# Odd numbers
+even_or_odd(7)     # Expected: "Odd"
+even_or_odd(-3)    # Expected: "Odd"
+
+# Edge cases
+even_or_odd(1)     # Expected: "Odd"
+even_or_odd(100)   # Expected: "Even"</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='sum_of_positive') }}" class="nav-link">Next: Sum of Positive →</a>
+    </div>
+{% endblock %}
