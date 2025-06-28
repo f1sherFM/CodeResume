@@ -84,5 +84,3 @@ def show_solution(solution_id):
         test_cases=solution["test_cases"],
         next_solution=next_solution
     )
-
-app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))

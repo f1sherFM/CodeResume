@@ -1,4 +1,5 @@
 from app import app
 
 if __name__ == "__main__":
-    app.run()
+    # Этот блок теперь не будет выполняться при запуске через Gunicorn
+    pass
