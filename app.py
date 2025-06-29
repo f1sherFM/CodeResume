@@ -1,29 +1,14 @@
 from flask import Flask, render_template, jsonify
-from flask.logging import default_handler
-import logging
 import os
 
 app = Flask(__name__)
 
-logging.basicConfig(level=logging.INFO)
 
 # Принудительно отключаем development-сервер
 app.config.update(
     ENV='production',
     SERVER_NAME=None,  # Важно для Railway
 )
-
-if not app.debug:
-    # Удаляем стандартный обработчик Flask
-    app.logger.handlers.clear()
-    
-    # Создаем новый обработчик
-    handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter(
-        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
-    ))
-    app.logger.addHandler(handler)
-    app.logger.setLevel(logging.INFO)
 
 # Данные о себе
 ABOUT_ME = """
@@ -115,7 +100,4 @@ def show_solution(solution_id):
     )
 
 if __name__ != '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
-    gunicorn_logger = logging.getLogger('gunicorn.error')
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
+    app.run(host='0.0.0.0', port=5000)
