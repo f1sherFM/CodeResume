@@ -1,0 +1,49 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Disemvowel Trolls <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Напишите функцию, которая удаляет все гласные из строки.</p>
+        <ul>
+            <li>Удаляет как строчные, так и заглавные гласные</li>
+            <li>Должна сохранять все остальные символы</li>
+            <li>Должна обрабатывать пустую строку</li>
+            <li>Должна сохранять пробелы и знаки препинания</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/52fba66badcd10859f00097e" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def disemvowel(s):
+    """Remove all vowels from a string."""
+    vowels = 'aeiouAEIOU'
+    return ''.join(char for char in s if char not in vowels)</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Basic case
+disemvowel('This website is for losers LOL!')  # Expected: 'Ths wbst s fr lsrs LL!'
+
+# Empty string
+disemvowel('')                                 # Expected: ''
+
+# All vowels
+disemvowel('AEIOUaeiou')                       # Expected: ''
+
+# Mixed case with newlines
+disemvowel('No offense but,\\nYour writing is terrible.')  # Expected: 'N ffns bt,\\nYr wrtng s trrbl.'</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='return_negative') }}" class="nav-link">Next: Return Negative →</a>
+    </div>
+{% endblock %}

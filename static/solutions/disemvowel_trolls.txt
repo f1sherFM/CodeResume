@@ -1,0 +1,4 @@
+def disemvowel(s):
+    """Remove all vowels from a string."""
+    vowels = 'aeiouAEIOU'
+    return ''.join(char for char in s if char not in vowels)
