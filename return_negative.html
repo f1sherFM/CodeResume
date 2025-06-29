@@ -1,0 +1,50 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Return Negative <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Напишите функцию, которая возвращает отрицательное число для положительного ввода, иначе возвращает само число.</p>
+        <ul>
+            <li>Если число положительное - вернуть отрицательное</li>
+            <li>Если число отрицательное - вернуть без изменений</li>
+            <li>Если 0 - вернуть 0</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/55685cd7ad70877c23000102" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def make_negative(number):
+    """Return negative of positive number, else return number."""
+    return -number if number > 0 else number</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Positive number
+make_negative(1)     # Expected: -1
+
+# Negative number
+make_negative(-5)    # Expected: -5
+
+# Zero
+make_negative(0)     # Expected: 0
+
+# Floating point
+make_negative(0.12)  # Expected: -0.12
+
+# Already negative
+make_negative(-0.5)  # Expected: -0.5</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='reversed_strings') }}" class="nav-link">Next: Reversed Strings →</a>
+    </div>
+{% endblock %}

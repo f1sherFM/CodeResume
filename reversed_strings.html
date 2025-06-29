@@ -1,0 +1,50 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Reversed Strings <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Напишите функцию, которая переворачивает переданную строку.</p>
+        <ul>
+            <li>Должна обрабатывать пустую строку</li>
+            <li>Должна сохранять регистр символов</li>
+            <li>Должна работать с однобайтовыми символами</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/5168bb5dfe9a00b126000018" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def solution(string):
+    """Reverse the given string."""
+    return string[::-1]</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Basic case
+solution('world')    # Expected: 'dlrow'
+
+# Empty string
+solution('')         # Expected: ''
+
+# Single character
+solution('a')        # Expected: 'a'
+
+# Palindrome
+solution('racecar')  # Expected: 'racecar'
+
+# With spaces
+solution('hello world')  # Expected: 'dlrow olleh'</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='vowel_count') }}" class="nav-link">Next: Vowel Count →</a>
+    </div>
+{% endblock %}

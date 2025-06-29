@@ -1,0 +1,4 @@
+def vowel_count(s):
+    """Return the number of vowels in a string."""
+    vowels = 'aeiou'
+    return sum(1 for char in s.lower() if char in vowels)

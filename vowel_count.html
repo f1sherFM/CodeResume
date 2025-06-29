@@ -1,0 +1,52 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Vowel Count <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Напишите функцию, которая возвращает количество гласных в заданной строке.</p>
+        <ul>
+            <li>Гласными считаются буквы a, e, i, o, u</li>
+            <li>Функция должна быть регистронезависимой</li>
+            <li>Должна обрабатывать пустую строку</li>
+            <li>Должна игнорировать другие символы</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/54ff3102c1bad923760001f3" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def vowel_count(s):
+    """Return the number of vowels in a string."""
+    vowels = 'aeiou'
+    return sum(1 for char in s.lower() if char in vowels)</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Basic case
+vowel_count('abracadabra')  # Expected: 5
+
+# No vowels
+vowel_count('my pyx')       # Expected: 0
+
+# Mixed case
+vowel_count('AEIOU')        # Expected: 5
+
+# Empty string
+vowel_count('')             # Expected: 0
+
+# With numbers/symbols
+vowel_count('123!@#')       # Expected: 0</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='disemvowel_trolls') }}" class="nav-link">Next: Disemvowel Trolls →</a>
+    </div>
+{% endblock %}

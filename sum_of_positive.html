@@ -1,0 +1,55 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Sum of Positive <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Напишите функцию для суммирования положительных чисел в массиве. Условия:</p>
+        <ul>
+            <li>Возвращает сумму всех положительных чисел</li>
+            <li>Игнорирует отрицательные числа</li>
+            <li>Возвращает 0 если массив пуст</li>
+            <li>Возвращает 0 если нет положительных чисел</li>
+            <li>Работает с целыми и дробными числами</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/5715eaedb436cf5606000381" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def positive_sum(arr):
+    """Returns sum of all positive numbers in array."""
+    return sum(x for x in arr if x > 0)</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Basic case
+positive_sum([1, 2, 3, 4, 5])      # Expected: 15
+
+# With negatives
+positive_sum([-1, 2, -3, 4, -5])   # Expected: 6
+
+# Empty array
+positive_sum([])                    # Expected: 0
+
+# All negatives
+positive_sum([-1, -2, -3])          # Expected: 0
+
+# Mixed numbers
+positive_sum([-1.5, 2.3, -3, 4.7])  # Expected: 7.0
+
+# Single element
+positive_sum([5])                   # Expected: 5</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='multiply') }}" class="nav-link">Next: Multiply →</a>
+    </div>
+{% endblock %}
