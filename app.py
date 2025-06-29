@@ -1,8 +1,21 @@
 from flask import Flask, render_template, jsonify
+from flask.logging import default_handler
+import logging
 import os
 
 app = Flask(__name__)
 
+if not app.debug:
+    # Удаляем стандартный обработчик Flask
+    app.logger.handlers.clear()
+    
+    # Создаем новый обработчик
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
+    ))
+    app.logger.addHandler(handler)
+    app.logger.setLevel(logging.INFO)
 
 # Данные о себе
 ABOUT_ME = """
