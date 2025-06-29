@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import os
 
 app = Flask(__name__)
@@ -36,6 +36,14 @@ CODEWARS_SOLUTIONS = [
         "test_cases": "# Should return 15\npositive_sum([1, 2, 3, 4, 5])\n\n# Should return 0 for empty array\npositive_sum([])\n\n# Should ignore negative numbers\npositive_sum([-1, 2, -3, 4, -5])"
     }
 ]
+
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({"error": "Not found"}), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({"error": "Internal server error"}), 500
 
 @app.route("/")
 def home():
