@@ -67,7 +67,7 @@ def home():
     
     return render_template(
         "index.html",
-        name="Ваше имя",
+        name="Балуков Кирилл",
         bio="Python Developer | Data Scientist",
         about_me=ABOUT_ME,
         skills=skills,
