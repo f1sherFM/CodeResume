@@ -5,6 +5,14 @@ import os
 
 app = Flask(__name__)
 
+logging.basicConfig(level=logging.INFO)
+
+# Принудительно отключаем development-сервер
+app.config.update(
+    ENV='production',
+    SERVER_NAME=None,  # Важно для Railway
+)
+
 if not app.debug:
     # Удаляем стандартный обработчик Flask
     app.logger.handlers.clear()
@@ -105,3 +113,8 @@ def show_solution(solution_id):
         test_cases=solution["test_cases"],
         next_solution=next_solution
     )
+
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
