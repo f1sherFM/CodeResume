@@ -2,3 +2,7 @@ def vowel_count(s):
     """Return the number of vowels in a string."""
     vowels = 'aeiou'
     return sum(1 for char in s.lower() if char in vowels)
+    # решение из видео
+def get_count(sentence):
+    vowels = "aeiou"
+    return sum(1 for char in sentence.lower() if char in vowels)

@@ -1,3 +1,5 @@
 def make_negative(number):
     """Return negative of positive number, else return number."""
-    return -number if number > 0 else number
+    return -abs(number)
+    # Или это решение
+    return number if number <= 0 else -number
