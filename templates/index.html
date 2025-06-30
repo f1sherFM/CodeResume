@@ -11,22 +11,67 @@
             border-top: 1px solid #dee2e6;
         }
         .skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-}
-.skill-category {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-.skill-category h3 {
-    color: #495057;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .skill-category h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        /* Стили для списка задач Codewars */
+        .codewars-list {
+            margin-top: 20px;
+        }
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            border-left: 4px solid #dee2e6;
+        }
+        .task-item:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+        }
+        .task-title {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        .kyu-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.35em 0.65em;
+            border-radius: 50rem;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        /* Цвета для разных уровней kyu */
+        .kyu-1 { background-color: #000000; color: white; }
+        .kyu-2 { background-color: #6a0dad; color: white; }
+        .kyu-3 { background-color: #0077b6; color: white; }
+        .kyu-4 { background-color: #0096c7; color: white; }
+        .kyu-5 { background-color: #00b4d8; color: black; }
+        .kyu-6 { background-color: #ff5400; color: white; }
+        .kyu-7 { background-color: #ff9e00; color: black; }
+        .kyu-8 { background-color: #6c757d; color: white; }
+        .kyu-beta { background-color: #e63946; color: white; }
+        .kyu-unknown { background-color: #adb5bd; color: black; }
     </style>
 </head>
 <body class="container mt-5">
@@ -41,48 +86,51 @@
             <p>{{ about_me }}</p>
             
             <h2><i class="fas fa-cogs icon-title"></i> Skills:</h2>
-<div class="skills-container">
-    <div class="skill-category">
-        <h3>Core:</h3>
-        <ul class="list-group mb-3">
-            <li class="list-group-item">
-                <i class="fab fa-python icon-title"></i> Python
-                <span class="badge bg-primary float-end">Advanced</span>
-            </li>
-            <li class="list-group-item">
-                <i class="fas fa-flask icon-title"></i> Flask
-                <span class="badge bg-primary float-end">Advanced</span>
-            </li>
-        </ul>
-    </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Core:</h3>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">
+                            <i class="fab fa-python icon-title"></i> Python
+                            <span class="badge bg-primary float-end">Advanced</span>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-flask icon-title"></i> Flask
+                            <span class="badge bg-primary float-end">Advanced</span>
+                        </li>
+                    </ul>
+                </div>
 
-    <div class="skill-category">
-        <h3>Data Science:</h3>
-        <ul class="list-group mb-3">
-            <li class="list-group-item">
-                <i class="fas fa-table icon-title"></i> pandas
-                <span class="badge bg-success float-end">Proficient</span>
-            </li>
-            <li class="list-group-item">
-                <i class="fas fa-calculator icon-title"></i> numpy
-                <span class="badge bg-success float-end">Proficient</span>
-            </li>
-            <li class="list-group-item">
-                <i class="fas fa-brain icon-title"></i> Other DS/ML stack
-                <span class="badge bg-info float-end">Experienced</span>
-            </li>
-        </ul>
-    </div>
-</div>
+                <div class="skill-category">
+                    <h3>Data Science:</h3>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">
+                            <i class="fas fa-table icon-title"></i> pandas
+                            <span class="badge bg-success float-end">Proficient</span>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-calculator icon-title"></i> numpy
+                            <span class="badge bg-success float-end">Proficient</span>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-brain icon-title"></i> Other DS/ML stack
+                            <span class="badge bg-info float-end">Experienced</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             
             <h2><i class="fab fa-connectdevelop icon-title"></i> Codewars Solutions:</h2>
-            <div class="list-group">
+            <div class="codewars-list">
                 {% for solution in solutions %}
-                    <a 
-                        href="{{ url_for('show_solution', solution_id=solution.id) }}" 
-                        class="list-group-item list-group-item-action"
-                    >
-                        <i class="fas fa-tasks icon-title"></i> {{ solution.title }}
+                    <a href="{{ url_for('show_solution', solution_id=solution.id) }}" 
+                       class="task-item text-decoration-none text-dark">
+                        <div class="task-title">
+                            <i class="fas fa-tasks icon-title"></i> {{ solution.title }}
+                        </div>
+                        <span class="kyu-badge kyu-{{ solution.kyu|replace('kyu','')|replace('beta','beta')|default('unknown', true) }}">
+                            {{ solution.kyu }}
+                        </span>
                     </a>
                 {% endfor %}
             </div>
@@ -91,8 +139,8 @@
 
     <footer class="mt-5 py-3 text-center text-muted">
         <div class="container">
-            <p class="mb-0">
-                &copy; 2025 f1sherFM | Version 1.0.0
+            <p class="mb-0" style="font-size: 1em !important;">
+                &copy; 2025 f1sherFM | Version 1.1.0 (Beta)
             </p>
         </div>
     </footer>
