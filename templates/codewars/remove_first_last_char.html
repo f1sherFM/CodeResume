@@ -1,0 +1,44 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+<h1>Remove First and Last Character <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+<div class="task-description">
+    <p>Напишите функцию, которая удаляет первый и последний символ строки.</p>
+    <ul>
+        <li>Работает со строками длиной ≥ 2</li>
+        <li>Не изменяет пустые строки</li>
+        <li>Возвращает пустую строку для ввода из 1-2 символов</li>
+    </ul>
+</div>
+
+<a href="https://www.codewars.com/kata/56bc28ad5bdaeb48760009b0" target="_blank" class="codewars-btn">
+    <i class="fas fa-external-link-alt"></i> View on Codewars
+</a>
+
+<hr class="divider">
+
+<h2>My Solution:</h2>
+<pre><code>def remove_char(s):
+    """Remove first and last character from string."""
+    return s[1:-1]</code></pre>
+
+<hr class="divider">
+
+<h2>Test Examples:</h2>
+<pre># Basic case
+remove_char('eloquent')  # Expected: 'loquen'
+
+# Short strings
+remove_char('country')   # Expected: 'ountr'
+remove_char('ok')        # Expected: ''
+remove_char('a')         # Expected: ''
+
+# Edge cases
+remove_char('')          # Expected: ''</pre>
+
+<div class="nav-links">
+    <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+    <a href="{{ url_for('show_solution', solution_id='string_repeat') }}" class="nav-link">Next: String Repeat →</a>
+</div>
+{% endblock %}
