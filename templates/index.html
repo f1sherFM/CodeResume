@@ -51,6 +51,15 @@
             display: flex;
             align-items: center;
             font-weight: 500;
+            flex-grow: 1;
+        }
+        .task-title-content {
+            margin-left: 10px;
+        }
+        .task-date {
+            font-size: 0.8em;
+            color: #6c757d;
+            margin-top: 3px;
         }
         .kyu-badge {
             font-size: 0.7rem;
@@ -126,9 +135,13 @@
                     <a href="{{ url_for('show_solution', solution_id=solution.id) }}" 
                        class="task-item text-decoration-none text-dark">
                         <div class="task-title">
-                            <i class="fas fa-tasks icon-title"></i> {{ solution.title }}
+                            <i class="fas fa-tasks icon-title"></i>
+                            <div class="task-title-content">
+                                <div>{{ solution.title }}</div>
+                                <div class="task-date">Добавлено: {{ solution.added_date }}</div>
+                            </div>
                         </div>
-                        <span class="kyu-badge kyu-{{ solution.kyu|replace('kyu','')|replace('beta','beta')|default('unknown', true) }}">
+                        <span class="kyu-badge kyu-{{ solution.kyu|replace('kyu','')|default('unknown', true) }}">
                             {{ solution.kyu }}
                         </span>
                     </a>
@@ -139,8 +152,8 @@
 
     <footer class="mt-5 py-3 text-center text-muted">
         <div class="container">
-            <p class="mb-0" style="font-size: 1em !important;">
-                &copy; 2025 f1sherFM | Version 1.1.0 (Beta)
+            <p class="mb-0">
+                &copy; 2025 f1sherFM | Version 1.2.0 (Beta)
             </p>
         </div>
     </footer>
