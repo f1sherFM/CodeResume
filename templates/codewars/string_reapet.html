@@ -1,0 +1,47 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>String Repeat <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Напишите функцию, которая повторяет строку указанное количество раз:</p>
+        <ul>
+            <li>Принимает целое число ≥ 0</li>
+            <li>Возвращает пустую строку при repeat = 0</li>
+            <li>Сохраняет исходный регистр символов</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/57a0e5c372292dd76d000d7e" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def repeat_str(repeat, string):
+    """Repeat string specified number of times."""
+    return string * repeat</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Basic case
+repeat_str(3, 'hi')      # Expected: 'hihihi'
+
+# With zero
+repeat_str(0, 'Hello')   # Expected: ''
+
+# Single repeat
+repeat_str(1, 'test')    # Expected: 'test'
+
+# Long string
+repeat_str(2, 'abc123')  # Expected: 'abc123abc123'</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='find_smallest_int') }}" class="nav-link">Next: Find Smallest Int →</a>
+    </div>
+{% endblock %}

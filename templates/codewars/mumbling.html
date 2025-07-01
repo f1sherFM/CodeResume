@@ -1,0 +1,47 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Mumbling <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Преобразуйте строку по шаблону, где каждая буква повторяется столько раз, каков ее индекс:</p>
+        <ul>
+            <li>Первая буква в верхнем регистре</li>
+            <li>Последующие буквы в нижнем регистре</li>
+            <li>Буквы разделены дефисами</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/5667e8f4e3f572a8f2000039" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def accum(s):
+    """Convert string to mumbling pattern."""
+    return '-'.join(c.upper() + c.lower() * i for i, c in enumerate(s))</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Basic case
+accum("abcd")    # Expected: "A-Bb-Ccc-Dddd"
+
+# Mixed case input
+accum("RqaEzty") # Expected: "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+
+# Single character
+accum("Z")       # Expected: "Z"
+
+# With numbers/symbols
+accum("cwAt")    # Expected: "C-Ww-Aaa-Tttt"</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='jaden_casing') }}" class="nav-link">Next: Jaden Casing Strings →</a>
+    </div>
+{% endblock %}

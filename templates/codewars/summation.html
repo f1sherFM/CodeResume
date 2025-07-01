@@ -1,0 +1,47 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Grasshopper - Summation <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Найдите сумму всех чисел от 1 до заданного числа n:</p>
+        <ul>
+            <li>Число всегда положительное</li>
+            <li>Если n = 1, возвращает 1</li>
+            <li>Должен работать с большими числами</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/55d24f55d7dd296eb9000030" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def summation(num):
+    """Return the sum of all numbers from 1 to num."""
+    return sum(range(1, num + 1))</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Small number
+summation(1)    # Expected: 1
+
+# Medium number
+summation(8)    # Expected: 36 (1+2+3+4+5+6+7+8)
+
+# Larger number
+summation(100)  # Expected: 5050
+
+# Edge case
+summation(0)    # Expected: 0</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='mumbling') }}" class="nav-link">Next: Mumbling →</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Jaden Casing Strings <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Преобразуйте строку так, чтобы каждое слово начиналось с заглавной буквы:</p>
+        <ul>
+            <li>Должен работать с любыми словами</li>
+            <li>Сохраняет пробелы между словами</li>
+            <li>Обрабатывает специальные символы</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/5390bac347d09b7da40006f6" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def to_jaden_case(string):
+    """Convert string to Jaden Case (each word capitalized)."""
+    return ' '.join(word.capitalize() for word in string.split())</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># Basic case
+to_jaden_case("how can mirrors be real")  # Expected: "How Can Mirrors Be Real"
+
+# With apostrophes
+to_jaden_case("if our eyes aren't real")  # Expected: "If Our Eyes Aren't Real"
+
+# Single word
+to_jaden_case("hello")                   # Expected: "Hello"
+
+# Mixed case input
+to_jaden_case("tHis iS a tEst")         # Expected: "This Is A Test"</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='string_repeat') }}" class="nav-link">Next: String Repeat →</a>
+    </div>
+{% endblock %}

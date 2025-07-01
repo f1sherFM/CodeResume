@@ -1,0 +1,47 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+    <h1>Find the smallest integer in the array <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+    <div class="task-description">
+        <p>Найдите наименьшее целое число в заданном массиве:</p>
+        <ul>
+            <li>Массив гарантированно не пустой</li>
+            <li>Может содержать отрицательные числа</li>
+            <li>Должен возвращать наименьшее число</li>
+        </ul>
+    </div>
+
+    <a href="https://www.codewars.com/kata/55a2d7ebe362935a210000b2" 
+       target="_blank" 
+       class="codewars-btn">
+        <i class="fas fa-external-link-alt"></i> View on Codewars
+    </a>
+
+    <hr class="divider">
+
+    <h2>My Solution:</h2>
+    <pre><code>def find_smallest_int(arr):
+    """Return the smallest integer in the array."""
+    return min(arr)</code></pre>
+
+    <hr class="divider">
+
+    <h2>Test Examples:</h2>
+    <pre># With negative numbers
+find_smallest_int([34, -345, -1, 100])  # Expected: -345
+
+# All positive numbers
+find_smallest_int([8, 10, 15, 20])      # Expected: 8
+
+# Single element array
+find_smallest_int([5])                   # Expected: 5
+
+# Mixed numbers
+find_smallest_int([0, 100, -5, 10])     # Expected: -5</pre>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+        <a href="{{ url_for('show_solution', solution_id='summation') }}" class="nav-link">Next: Grasshopper - Summation →</a>
+    </div>
+{% endblock %}
