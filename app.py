@@ -1,24 +1,25 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import os
 from datetime import datetime
 
 app = Flask(__name__)
 
-# Конфигурация
+# Конфигурация приложения
 app.config.update(
     ENV='production',
     SERVER_NAME=None,
+    TEMPLATES_AUTO_RELOAD=True
 )
 
 # Данные о себе
 ABOUT_ME = """
-Привет! Я — Python-разработчик. Призёр многих онлайн-олимпиад, победитель в IT-хакатоне в номинации "Лучший Код"
+Привет! Я — Python-разработчик. Призёр многих онлайн-олимпиад, победитель в IT-хакатоне в номинации "Лучший Код".
 Занял 2 место на чемпионате "Профессионалы". Делал работы для таких известных компаний как: "Kaspersky" и "Sber-Tech".
 Специализируюсь в таких направлениях как: Data Science и Machine Learning. Занимаюсь питоном 2 года.
 Год занимался в It-Cube г. Сургута, в недавном времени забрали Кубок на "Кубитве".
 """
 
-# Список задач Codewars
+# Полный список задач Codewars
 CODEWARS_SOLUTIONS = [
     {
         "id": "multiply",
@@ -45,7 +46,7 @@ CODEWARS_SOLUTIONS = [
         "link": "https://www.codewars.com/kata/5715eaedb436cf5606000381",
         "test_cases": "# Should return 15\npositive_sum([1, 2, 3, 4, 5])\n\n# Should return 0 for empty array\npositive_sum([])\n\n# Should ignore negative numbers\npositive_sum([-1, 2, -3, 4, -5])",
         "kyu": "8kyu",
-        "added_date": "2025-06-39"
+        "added_date": "2025-06-29"
     },
     {
         "id": "vowel_count",
@@ -108,13 +109,50 @@ CODEWARS_SOLUTIONS = [
         "link": "https://www.codewars.com/kata/514b92a657cdc65150000006",
         "test_cases": "# 10 => 23 (3+5+6+9)\nsolution(10)\n# 20 => 78 (3+5+6+9+10+12+15+18)",
         "kyu": "6kyu",
-        "added_date": "2023-06-30"
+        "added_date": "2025-06-30"
+    },
+    {
+        "id": "find_smallest_int",
+        "title": "Find the smallest integer in the array",
+        "description": "Найдите наименьшее целое число в массиве.",
+        "link": "https://www.codewars.com/kata/55a2d7ebe362935a210000b2",
+        "test_cases": "# Should return -345\nfind_smallest_int([34, -345, -1, 100])\n\n# Should return 8\nfind_smallest_int([8, 10, 15, 20])",
+        "kyu": "8kyu",
+        "added_date": "2025-07-01"
+    },
+    {
+        "id": "summation",
+        "title": "Grasshopper - Summation",
+        "description": "Найдите сумму всех чисел от 1 до n.",
+        "link": "https://www.codewars.com/kata/55d24f55d7dd296eb9000030",
+        "test_cases": "# Should return 36\nsummation(8)\n\n# Should return 1\nsummation(1)\n\n# Should return 55\nsummation(10)",
+        "kyu": "8kyu",
+        "added_date": "2025-07-01"
+    },
+    {
+        "id": "mumbling",
+        "title": "Mumbling",
+        "description": "Преобразуйте строку по определенному шаблону (каждая буква повторяется n раз).",
+        "link": "https://www.codewars.com/kata/5667e8f4e3f572a8f2000039",
+        "test_cases": "# Should return 'A-Bb-Ccc-Dddd'\naccum('abcd')\n\n# Should return 'R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy'\naccum('RqaEzty')",
+        "kyu": "7kyu",
+        "added_date": "2025-07-01"
+    },
+    {
+        "id": "jaden_casing",
+        "title": "Jaden Casing Strings",
+        "description": "Преобразуйте строку так, чтобы каждое слово начиналось с заглавной буквы.",
+        "link": "https://www.codewars.com/kata/5390bac347d09b7da40006f6",
+        "test_cases": "# Should return 'How Can Mirrors Be Real If Our Eyes Aren't Real'\nto_jaden_case('How can mirrors be real if our eyes aren't real')",
+        "kyu": "7kyu",
+        "added_date": "2025-07-01"
     }
 ]
 
 # Сортировка по дате (новые сверху)
 CODEWARS_SOLUTIONS.sort(key=lambda x: x['added_date'], reverse=True)
 
+# Обработчики ошибок
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({"error": "Not found"}), 404
@@ -123,9 +161,9 @@ def not_found(error):
 def internal_error(error):
     return jsonify({"error": "Internal server error"}), 500
 
-@app.route("/")
-def home():
-    skills = {
+# Функция для получения навыков
+def get_skills():
+    return {
         "Core": [
             {"name": "Python", "level": "Advanced", "icon": "fab fa-python"},
             {"name": "Flask", "level": "Advanced", "icon": "fas fa-flask"}
@@ -136,27 +174,63 @@ def home():
             {"name": "Other DS/ML stack", "level": "Experienced", "icon": "fas fa-brain"}
         ]
     }
+
+# Главная страница
+@app.route("/")
+def home():
+    return render_template(
+        "index.html",
+        name="Балуков Кирилл",
+        bio="Python Developer | Data Scientist",
+        about_me=ABOUT_ME,
+        skills=get_skills(),
+        solutions=CODEWARS_SOLUTIONS,
+        active_filter="all"
+    )
+
+# Фильтрация задач
+@app.route("/codewars/filter")
+def filter_solutions():
+    kyu_filter = request.args.get('kyu')
+    date_filter = request.args.get('date')
+    
+    filtered_solutions = CODEWARS_SOLUTIONS
+    
+    # Фильтрация по уровню kyu
+    if kyu_filter:
+        filtered_solutions = [s for s in filtered_solutions if s['kyu'] == kyu_filter]
+    
+    # Фильтрация по дате
+    if date_filter:
+        filtered_solutions = [s for s in filtered_solutions if s['added_date'] >= date_filter]
     
     return render_template(
         "index.html",
         name="Балуков Кирилл",
         bio="Python Developer | Data Scientist",
         about_me=ABOUT_ME,
-        skills=skills,
-        solutions=CODEWARS_SOLUTIONS
+        skills=get_skills(),
+        solutions=filtered_solutions,
+        active_filter=kyu_filter if kyu_filter else "date" if date_filter else "all"
     )
 
+# Страница решения задачи
 @app.route("/codewars/<solution_id>")
 def show_solution(solution_id):
+    # Поиск решения по ID
     solution = next((s for s in CODEWARS_SOLUTIONS if s["id"] == solution_id), None)
+    
     if not solution:
         return "Решение не найдено", 404
     
-    next_index = (CODEWARS_SOLUTIONS.index(solution) + 1) % len(CODEWARS_SOLUTIONS)
+    # Получение следующей задачи для навигации
+    current_index = CODEWARS_SOLUTIONS.index(solution)
+    next_index = (current_index + 1) % len(CODEWARS_SOLUTIONS)
     next_solution = CODEWARS_SOLUTIONS[next_index]
     
+    # Чтение кода решения из файла
     try:
-        with open(f"static/solutions/{solution_id}.txt", "r") as f:
+        with open(f"static/solutions/{solution_id}.txt", "r", encoding='utf-8') as f:
             code = f.read()
     except FileNotFoundError:
         code = "Решение пока не добавлено"
@@ -173,5 +247,8 @@ def show_solution(solution_id):
         added_date=solution.get("added_date", "")
     )
 
-if __name__ != '__main__':
+# Запуск приложения
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
+else:
     app.run(host='0.0.0.0', port=5001)
