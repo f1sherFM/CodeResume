@@ -81,6 +81,36 @@
         .kyu-8 { background-color: #6c757d; color: white; }
         .kyu-beta { background-color: #e63946; color: white; }
         .kyu-unknown { background-color: #adb5bd; color: black; }
+
+        /* Стили для фильтров */
+        .filter-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .filter-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .filter-btn {
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid #dee2e6;
+            background: white;
+            cursor: pointer;
+        }
+        .filter-btn.active {
+            background: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+        .date-filter {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="container mt-5">
@@ -130,6 +160,40 @@
             </div>
             
             <h2><i class="fab fa-connectdevelop icon-title"></i> Codewars Solutions:</h2>
+            
+            <!-- Фильтры -->
+            <div class="filter-section">
+                <div class="filter-nav">
+                    <a href="{{ url_for('home') }}" 
+                       class="filter-btn {% if active_filter == 'all' %}active{% endif %}">
+                        All
+                    </a>
+                    <a href="{{ url_for('filter_solutions', kyu='8kyu') }}" 
+                       class="filter-btn {% if active_filter == '8kyu' %}active{% endif %}">
+                        8 kyu
+                    </a>
+                    <a href="{{ url_for('filter_solutions', kyu='7kyu') }}" 
+                       class="filter-btn {% if active_filter == '7kyu' %}active{% endif %}">
+                        7 kyu
+                    </a>
+                    <a href="{{ url_for('filter_solutions', kyu='6kyu') }}" 
+                       class="filter-btn {% if active_filter == '6kyu' %}active{% endif %}">
+                        6 kyu
+                    </a>
+                </div>
+                <form action="{{ url_for('filter_solutions') }}" method="get" class="row g-3">
+                    <div class="col-md-8">
+                        <label for="date" class="form-label">Filter by date (added after):</label>
+                        <div class="date-filter">
+                            <input type="date" id="date" name="date" class="form-control">
+                            <button type="submit" class="btn btn-primary">Apply</button>
+                            <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">Reset</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Список задач -->
             <div class="codewars-list">
                 {% for solution in solutions %}
                     <a href="{{ url_for('show_solution', solution_id=solution.id) }}" 
@@ -153,9 +217,11 @@
     <footer class="mt-5 py-3 text-center text-muted">
         <div class="container">
             <p class="mb-0">
-                &copy; 2025 f1sherFM | Version 1.2.0 (Beta)
+                &copy; 2025 f1sherFM | Version 1.3.0 (Beta)
             </p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
