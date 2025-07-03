@@ -1,0 +1,42 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+<h1>Square(n) Sum <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+<div class="task-description">
+    <p>Возведите в квадрат каждый элемент массива и суммируйте результаты:</p>
+    <ul>
+        <li>Работает с целыми и дробными числами</li>
+        <li>Для пустого массива возвращает 0</li>
+        <li>Игнорирует нечисловые элементы</li>
+    </ul>
+</div>
+
+<a href="https://www.codewars.com/kata/515e271a311df0350d00000f" target="_blank" class="codewars-btn">
+    <i class="fas fa-external-link-alt"></i> View on Codewars
+</a>
+
+<hr class="divider">
+
+<h2>My Solution:</h2>
+<pre><code>def square_sum(numbers):
+    """Return sum of squared numbers."""
+    return sum(x ** 2 for x in numbers)</code></pre>
+
+<hr class="divider">
+
+<h2>Test Examples:</h2>
+<pre># Basic case
+square_sum([1, 2])               # Expected: 5
+# With zeros
+square_sum([0, 3, 4, 5])         # Expected: 50
+# Empty array
+square_sum([])                    # Expected: 0
+# With negatives
+square_sum([-1, -2])              # Expected: 5</pre>
+
+<div class="nav-links">
+    <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+    <a href="{{ url_for('show_solution', solution_id='duplicate_encoder') }}" class="nav-link">Next: Duplicate Encoder →</a>
+</div>
+{% endblock %}

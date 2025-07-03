@@ -1,0 +1,41 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+<h1>Convert string to camel case <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+<div class="task-description">
+    <p>Преобразуйте строки с разделителями '-' или '_' в camelCase:</p>
+    <ul>
+        <li>Первое слово сохраняет исходный регистр</li>
+        <li>Последующие слова начинаются с заглавной буквы</li>
+        <li>Удаляет все разделители</li>
+    </ul>
+</div>
+
+<a href="https://www.codewars.com/kata/517abf86da9663f1d2000003" target="_blank" class="codewars-btn">
+    <i class="fas fa-external-link-alt"></i> View on Codewars
+</a>
+
+<hr class="divider">
+
+<h2>My Solution:</h2>
+<pre><code>def to_camel_case(text):
+    """Convert dash/underscore delimited words to camelCase."""
+    words = text.replace('-', ' ').replace('_', ' ').split()
+    return words[0] + ''.join(word.capitalize() for word in words[1:])</code></pre>
+
+<hr class="divider">
+
+<h2>Test Examples:</h2>
+<pre># Dash separated
+to_camel_case("the-stealth-warrior")  # Expected: "theStealthWarrior"
+# Underscore separated
+to_camel_case("The_Stealth_Warrior")  # Expected: "TheStealthWarrior"
+# Mixed delimiters
+to_camel_case("A-B_C-D")              # Expected: "ABCD"</pre>
+
+<div class="nav-links">
+    <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+    <a href="{{ url_for('show_solution', solution_id='friend_or_foe') }}" class="nav-link">Next: Friend or Foe? →</a>
+</div>
+{% endblock %}

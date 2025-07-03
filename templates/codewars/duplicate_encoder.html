@@ -1,0 +1,43 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+<h1>Duplicate Encoder <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+<div class="task-description">
+    <p>Преобразуйте строку, заменяя символы:</p>
+    <ul>
+        <li>'(' если символ встречается один раз</li>
+        <li>')' если символ повторяется</li>
+        <li>Регистр не имеет значения</li>
+    </ul>
+</div>
+
+<a href="https://www.codewars.com/kata/54b42f9314d9229fd6000d9c" target="_blank" class="codewars-btn">
+    <i class="fas fa-external-link-alt"></i> View on Codewars
+</a>
+
+<hr class="divider">
+
+<h2>My Solution:</h2>
+<pre><code>def duplicate_encode(word):
+    """Convert string to duplicate encoded format."""
+    word = word.lower()
+    return ''.join('(' if word.count(c) == 1 else ')' for c in word)</code></pre>
+
+<hr class="divider">
+
+<h2>Test Examples:</h2>
+<pre># No duplicates
+duplicate_encode("din")      # Expected: "((("
+# With duplicates
+duplicate_encode("recede")   # Expected: "()()()"
+# Mixed case
+duplicate_encode("Success")  # Expected: ")())())"
+# Special chars
+duplicate_encode("(( @")     # Expected: "))(("</pre>
+
+<div class="nav-links">
+    <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+    <a href="{{ url_for('show_solution', solution_id='sum_two_smallest') }}" class="nav-link">Next: Sum of Two Smallest →</a>
+</div>
+{% endblock %}

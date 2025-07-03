@@ -1,0 +1,41 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+<h1>Sum of two lowest positive integers <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+<div class="task-description">
+    <p>Найдите сумму двух наименьших положительных чисел в массиве:</p>
+    <ul>
+        <li>Массив содержит минимум 4 положительных числа</li>
+        <li>Игнорирует отрицательные числа</li>
+        <li>Работает с большими числами</li>
+    </ul>
+</div>
+
+<a href="https://www.codewars.com/kata/558fc85d8fd1938afb000014" target="_blank" class="codewars-btn">
+    <i class="fas fa-external-link-alt"></i> View on Codewars
+</a>
+
+<hr class="divider">
+
+<h2>My Solution:</h2>
+<pre><code>def sum_two_smallest_numbers(numbers):
+    """Return sum of two smallest numbers."""
+    sorted_numbers = sorted([x for x in numbers if x > 0])
+    return sorted_numbers[0] + sorted_numbers[1]</code></pre>
+
+<hr class="divider">
+
+<h2>Test Examples:</h2>
+<pre># Basic case
+sum_two_smallest_numbers([5, 8, 12, 18, 22])  # Expected: 13
+# With large numbers
+sum_two_smallest_numbers([10, 343445353, 3453445, 3453545353453])  # Expected: 3453455
+# With negatives
+sum_two_smallest_numbers([-1, 2, 3, 4])       # Expected: 5</pre>
+
+<div class="nav-links">
+    <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+    <a href="{{ url_for('show_solution', solution_id='to_camel_case') }}" class="nav-link">Next: Convert to Camel Case →</a>
+</div>
+{% endblock %}

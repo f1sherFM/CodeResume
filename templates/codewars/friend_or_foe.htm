@@ -1,0 +1,40 @@
+{% extends "codewars/base_solution.html" %}
+
+{% block content %}
+<h1>Friend or Foe? <span class="badge bg-secondary">{{ kyu }}</span></h1>
+
+<div class="task-description">
+    <p>Отфильтруйте массив строк, оставив только строки длиной 4 символа:</p>
+    <ul>
+        <li>Возвращает новый массив</li>
+        <li>Не изменяет исходный массив</li>
+        <li>Работает с любыми строками</li>
+    </ul>
+</div>
+
+<a href="https://www.codewars.com/kata/55b42574ff091733d900002f" target="_blank" class="codewars-btn">
+    <i class="fas fa-external-link-alt"></i> View on Codewars
+</a>
+
+<hr class="divider">
+
+<h2>My Solution:</h2>
+<pre><code>def friend(friends):
+    """Filter list to keep only names with 4 letters."""
+    return [name for name in friends if len(name) == 4]</code></pre>
+
+<hr class="divider">
+
+<h2>Test Examples:</h2>
+<pre># Basic case
+friend(["Ryan", "Kieran", "Mark"])  # Expected: ["Ryan", "Mark"]
+# No matches
+friend(["Jimm", "Cari", "aret"])    # Expected: []
+# With numbers
+friend(["1234", "123", "12345"])    # Expected: ["1234"]</pre>
+
+<div class="nav-links">
+    <a href="{{ url_for('home') }}" class="nav-link">← Back to Resume</a>
+    <a href="{{ url_for('show_solution', solution_id='tribonacci') }}" class="nav-link">Next: Tribonacci Sequence →</a>
+</div>
+{% endblock %}
