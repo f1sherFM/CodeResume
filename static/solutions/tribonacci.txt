@@ -1,0 +1,6 @@
+def tribonacci(signature, n):
+    sequence = signature[:n]
+    for i in range(3, n):
+        next_val = sum(sequence[i-3:i])
+        sequence.append(next_val)
+    return sequence
