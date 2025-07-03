@@ -31,6 +31,60 @@ CODEWARS_SOLUTIONS = [
         "added_date": "2025-06-28"
     },
     {
+        "id": "square_sum",
+        "title": "Square(n) Sum",
+        "description": "Возведите в квадрат каждый элемент массива и суммируйте результаты.",
+        "link": "https://www.codewars.com/kata/515e271a311df0350d00000f",
+        "test_cases": "# Should return 5\nsquare_sum([1, 2])\n\n# Should return 50\nsquare_sum([0, 3, 4, 5])\n\n# Should return 0\nsquare_sum([])",
+        "kyu": "8kyu",
+        "added_date": "2025-07-02"
+    },
+    {
+        "id": "duplicate_encoder",
+        "title": "Duplicate Encoder",
+        "description": "Преобразуйте строку, заменяя символы на '(' если они встречаются один раз и ')' если повторяются.",
+        "link": "https://www.codewars.com/kata/54b42f9314d9229fd6000d9c",
+        "test_cases": "# Should return '((('\nduplicate_encoder('din')\n\n# Should return '()()()'\nduplicate_encoder('recede')\n\n# Should return ')())())'\nduplicate_encoder('Success')",
+        "kyu": "6kyu",
+        "added_date": "2025-07-02"
+    },
+    {
+        "id": "sum_two_smallest",
+        "title": "Sum of two lowest positive integers",
+        "description": "Найдите сумму двух наименьших положительных чисел в массиве.",
+        "link": "https://www.codewars.com/kata/558fc85d8fd1938afb000014",
+        "test_cases": "# Should return 7\nsum_two_smallest_numbers([5, 8, 12, 18, 22])\n\n# Should return 3453455\nsum_two_smallest_numbers([10, 343445353, 3453445, 3453545353453])",
+        "kyu": "7kyu",
+        "added_date": "2025-07-02"
+    },
+    {
+        "id": "to_camel_case",
+        "title": "Convert string to camel case",
+        "description": "Преобразуйте строки с разделителями '-' или '_' в camelCase.",
+        "link": "https://www.codewars.com/kata/517abf86da9663f1d2000003",
+        "test_cases": "# Should return 'theStealthWarrior'\nto_camel_case('the-stealth-warrior')\n\n# Should return 'TheStealthWarrior'\nto_camel_case('The_Stealth_Warrior')",
+        "kyu": "6kyu",
+        "added_date": "2025-07-02"
+    },
+    {
+        "id": "friend_or_foe",
+        "title": "Friend or Foe?",
+        "description": "Отфильтруйте массив строк, оставив только строки длиной 4 символа.",
+        "link": "https://www.codewars.com/kata/55b42574ff091733d900002f",
+        "test_cases": "# Should return ['Ryan', 'Mark']\nfriend(['Ryan', 'Kieran', 'Mark'])\n\n# Should return []\nfriend(['Jimm', 'Cari', 'aret'])",
+        "kyu": "7kyu",
+        "added_date": "2025-07-02"
+    },
+    {
+        "id": "tribonacci",
+        "title": "Tribonacci Sequence",
+        "description": "Реализуйте последовательность Трибоначчи (аналог Фибоначчи, но каждый элемент - сумма трех предыдущих).",
+        "link": "https://www.codewars.com/kata/556deca17c58da83c00002db",
+        "test_cases": "# Should return [1, 1, 1, 3, 5, 9, 17, 31, 57, 105]\ntribonacci([1, 1, 1], 10)\n\n# Should return [0, 0, 1, 1, 2, 4, 7, 13, 24, 44]\ntribonacci([0, 0, 1], 10)",
+        "kyu": "6kyu",
+        "added_date": "2025-07-02"
+    },
+    {
         "id": "even_or_odd",
         "title": "Even or Odd",
         "description": "Определите, является ли число чётным или нечётным.",
